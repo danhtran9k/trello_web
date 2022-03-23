@@ -5,6 +5,7 @@ $gap: 10px;
 $board-bg-color: #0a95ff;
 $appbar-bg-color: #0067a3;
 $list-bg-color: #ebecf0;
+$common-element-bg: rgba(255, 255, 255, 0.24);
 
 $column-header-height: 46px;
 $column-footer-height: 46px;
@@ -47,13 +48,29 @@ body {
     display: flex;
     overflow-x: auto;
 
+    margin: 0 $gap $gap;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar:horizontal {
+      height: 11px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $common-element-bg;
+      border-radius: 8px;
+    }
+
     .column {
       flex: 0 0 auto;
 
       width: 300px;
       height: calc(100% - #{$gap});
 
-      margin-left: $gap;
+      &:not(:first-child) {
+        margin-left: $gap;
+      }
 
       > * {
         background-color: $list-bg-color;
@@ -94,6 +111,18 @@ body {
         max-height: calc(
           100% - #{$column-header-height} - #{$column-footer-height}
         );
+
+        &::-webkit-scrollbar {
+          -webkit-appearance: none;
+        }
+
+        &::-webkit-scrollbar:vertical {
+          width: 11px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: darken($list-bg-color, 15);
+          border-right: 5px solid $list-bg-color;
+        }
 
         li {
           background-color: white;
